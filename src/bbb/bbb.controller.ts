@@ -10,7 +10,7 @@ import {
 import { BbbService } from './bbb.service';
 import { CreateBbbDto } from './dto/create-bbb.dto';
 import { UpdateBbbDto } from './dto/update-bbb.dto';
-import { RequireLogin } from 'src/custom-decorator';
+import { RequireLogin, RequirePermission } from 'src/custom-decorator';
 
 @Controller('bbb')
 @RequireLogin()
@@ -23,6 +23,7 @@ export class BbbController {
   }
 
   @Get()
+  @RequirePermission('查询 bbb')
   findAll() {
     return this.bbbService.findAll();
   }
